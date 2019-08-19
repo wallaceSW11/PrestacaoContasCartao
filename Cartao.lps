@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="11"/>
+    <BuildModes Active="Default"/>
+    <Units Count="14">
+      <Unit0>
+        <Filename Value="Cartao.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="9"/>
+        <CursorPos X="36" Y="15"/>
+        <UsageCount Value="63"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="cartao.view.principal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Cartao.View.Principal"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="268"/>
+        <CursorPos X="28" Y="286"/>
+        <UsageCount Value="63"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="cartao.model.entidades.cartao.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="cartao.model.entidades.Cartao"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4"/>
+        <CursorPos X="31" Y="24"/>
+        <UsageCount Value="63"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="cartao.controller.cartao.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="15"/>
+        <CursorPos X="28" Y="30"/>
+        <UsageCount Value="63"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="cartao.model.entidades.lancamento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="cartao.model.entidades.Lancamento"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="7"/>
+        <CursorPos X="20" Y="27"/>
+        <UsageCount Value="63"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="cartao.view.relatorio.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmRelatorio"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="6"/>
+        <CursorPos X="14" Y="14"/>
+        <UsageCount Value="63"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="cartao.view.cadastro.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCadastro"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="133"/>
+        <CursorPos X="44" Y="92"/>
+        <UsageCount Value="39"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="ugridhelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uGridHelper"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="28"/>
+        <CursorPos Y="37"/>
+        <UsageCount Value="38"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="C:\lazarus\lcl\grids.pas"/>
+        <UnitName Value="Grids"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="9886"/>
+        <CursorPos Y="9899"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="2904"/>
+        <CursorPos Y="2917"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="2161"/>
+        <CursorPos Y="2174"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="5409"/>
+        <CursorPos Y="5420"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="C:\lazarus\lcl\include\buttoncontrol.inc"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="44"/>
+        <CursorPos Y="56"/>
+        <UsageCount Value="17"/>
+        <Loaded Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="C:\lazarus\lcl\include\buttons.inc"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="158"/>
+        <CursorPos Y="170"/>
+        <UsageCount Value="17"/>
+        <Loaded Value="True"/>
+      </Unit13>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="252" Column="4" TopLine="245"/>
+      </Position1>
+      <Position2>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="253" Column="7" TopLine="240"/>
+      </Position2>
+      <Position3>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="248" Column="69" TopLine="257"/>
+      </Position3>
+      <Position4>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="256" Column="22" TopLine="240"/>
+      </Position4>
+      <Position5>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="254" Column="12" TopLine="242"/>
+      </Position5>
+      <Position6>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="255" Column="14" TopLine="243"/>
+      </Position6>
+      <Position7>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="9" Column="76" TopLine="61"/>
+      </Position7>
+      <Position8>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="383" TopLine="371"/>
+      </Position8>
+      <Position9>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="256" Column="26" TopLine="240"/>
+      </Position9>
+      <Position10>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="255" Column="13" TopLine="243"/>
+      </Position10>
+      <Position11>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="265" Column="22" TopLine="252"/>
+      </Position11>
+      <Position12>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="275" Column="35" TopLine="257"/>
+      </Position12>
+      <Position13>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="261" Column="24" TopLine="248"/>
+      </Position13>
+      <Position14>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="256" Column="34" TopLine="248"/>
+      </Position14>
+      <Position15>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="263" TopLine="248"/>
+      </Position15>
+      <Position16>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="265" TopLine="248"/>
+      </Position16>
+      <Position17>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="266" Column="62" TopLine="249"/>
+      </Position17>
+      <Position18>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="263" TopLine="249"/>
+      </Position18>
+      <Position19>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="265" TopLine="249"/>
+      </Position19>
+      <Position20>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="266" TopLine="249"/>
+      </Position20>
+      <Position21>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="268" TopLine="249"/>
+      </Position21>
+      <Position22>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="279" Column="28" TopLine="222"/>
+      </Position22>
+      <Position23>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="284" TopLine="272"/>
+      </Position23>
+      <Position24>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="442" Column="22" TopLine="429"/>
+      </Position24>
+      <Position25>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="266" Column="58" TopLine="259"/>
+      </Position25>
+      <Position26>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="289" Column="3" TopLine="286"/>
+      </Position26>
+      <Position27>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="56" Column="15" TopLine="46"/>
+      </Position27>
+      <Position28>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="464" Column="49" TopLine="433"/>
+      </Position28>
+      <Position29>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="283" Column="38" TopLine="283"/>
+      </Position29>
+      <Position30>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="183" Column="42" TopLine="170"/>
+      </Position30>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="2">
+      <Item1>
+        <Expression Value="lCelula"/>
+      </Item1>
+      <Item2>
+        <Expression Value="sgPrincipal.cells[1,sgPrincipal.row]"/>
+      </Item2>
+    </Watches>
+  </Debugging>
+</CONFIG>

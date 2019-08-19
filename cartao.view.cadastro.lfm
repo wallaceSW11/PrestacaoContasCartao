@@ -1,0 +1,66 @@
+object frmCadastro: TfrmCadastro
+  Left = 382
+  Height = 240
+  Top = 174
+  Width = 294
+  Caption = 'Cadastro'
+  ClientHeight = 240
+  ClientWidth = 294
+  KeyPreview = True
+  OnShow = FormShow
+  LCLVersion = '2.0.2.0'
+  object Label1: TLabel
+    Left = 8
+    Height = 15
+    Top = 4
+    Width = 36
+    Caption = 'Nome:'
+    ParentColor = False
+  end
+  object edtPessoa: TEdit
+    Left = 8
+    Height = 23
+    Top = 28
+    Width = 246
+    OnKeyPress = edtPessoaKeyPress
+    OnKeyUp = edtPessoaKeyUp
+    TabOrder = 0
+  end
+  object btnAddPessoa: TButton
+    Left = 262
+    Height = 25
+    Top = 28
+    Width = 27
+    Caption = '+'
+    OnClick = btnAddPessoaClick
+    TabOrder = 1
+  end
+  object lbPessoa: TListBox
+    Left = 6
+    Height = 128
+    Top = 60
+    Width = 280
+    Columns = 1
+    ItemHeight = 0
+    OnDblClick = lbPessoaDblClick
+    TabOrder = 2
+  end
+  object btnSalvar: TButton
+    Left = 120
+    Height = 25
+    Top = 202
+    Width = 75
+    Caption = 'Salvar'
+    OnClick = btnSalvarClick
+    TabOrder = 3
+  end
+  object btnCancelar: TButton
+    Left = 208
+    Height = 25
+    Top = 202
+    Width = 75
+    Caption = 'Cancelar'
+    OnClick = btnCancelarClick
+    TabOrder = 4
+  end
+end
