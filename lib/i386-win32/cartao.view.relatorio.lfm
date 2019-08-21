@@ -1,0 +1,28 @@
+object frmRelatorio: TfrmRelatorio
+  Left = 443
+  Height = 515
+  Top = 127
+  Width = 685
+  Caption = 'Relatório'
+  ClientHeight = 515
+  ClientWidth = 685
+  Position = poMainFormCenter
+  LCLVersion = '2.0.2.0'
+  object mmRelatorio: TMemo
+    Left = 8
+    Height = 496
+    Top = 8
+    Width = 664
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Courier New'
+    Font.Pitch = fpFixed
+    Font.Quality = fqDraft
+    ParentFont = False
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 0
+  end
+end

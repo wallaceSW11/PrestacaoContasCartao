@@ -5,7 +5,8 @@ unit cartao.view.cadastro;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  cartao.helper.diretorios, LCLType;
 
 type
 
@@ -15,21 +16,24 @@ type
     btnAddPessoa: TButton;
     btnSalvar: TButton;
     btnCancelar: TButton;
+    btnExcluirPessoa: TButton;
     edtPessoa: TEdit;
     Label1: TLabel;
     lbPessoa: TListBox;
     procedure btnAddPessoaClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure btnExcluirPessoaClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
-    procedure edtPessoaKeyPress(Sender: TObject; var Key: char);
     procedure edtPessoaKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
       );
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
+    procedure lbPessoaClick(Sender: TObject);
     procedure lbPessoaDblClick(Sender: TObject);
   private
     procedure AddPessoa;
     procedure CarregarListaPessoa;
+    procedure ExcluirCadastro();
     procedure SalvarPessoaTXT;
 
   public
@@ -65,6 +69,11 @@ begin
   close;
 end;
 
+procedure TfrmCadastro.btnExcluirPessoaClick(Sender: TObject);
+begin
+  ExcluirCadastro;
+end;
+
 procedure TfrmCadastro.btnSalvarClick(Sender: TObject);
 begin
   SalvarPessoaTXT;
@@ -72,10 +81,6 @@ begin
   self.modalresult := mrOk;
 end;
 
-procedure TfrmCadastro.edtPessoaKeyPress(Sender: TObject; var Key: char);
-begin
-
-end;
 
 procedure TfrmCadastro.edtPessoaKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -97,14 +102,20 @@ procedure TfrmCadastro.FormShow(Sender: TObject);
 var
   lArquivo: TextFile;
 begin
-  if not FileExists(ExtractFilePath(Application.ExeName) + '\Pessoas.txt') then
+  if not FileExists(THelper.RetornarDiretorioArquivoPessoas) then
   begin
-    AssignFile(lArquivo, ExtractFilePath(Application.ExeName) + '\Pessoas.txt');
+    AssignFile(lArquivo, THelper.RetornarDiretorioArquivoPessoas);
     rewrite(lArquivo);
     closefile(lArquivo);
   end;
 
   CarregarListaPessoa;
+  btnExcluirPessoa.visible := false;
+end;
+
+procedure TfrmCadastro.lbPessoaClick(Sender: TObject);
+begin
+  btnExcluirPessoa.visible := (lbpessoa.itemindex > 0)
 end;
 
 
@@ -115,7 +126,7 @@ var
   i: integer;
 begin
   lLinhas := TStringlist.create;
-  lLinhas.LoadFromFile(ExtractFilePath(Application.ExeName) + '\Pessoas.txt');
+  lLinhas.LoadFromFile(THelper.RetornarDiretorioArquivoPessoas);
   lbPessoa.clear;
 
   for i := 0 to pred(lLinhas.count) do
@@ -133,12 +144,21 @@ begin
   lbPessoa.DeleteSelected;
 end;
 
+procedure TfrmCadastro.ExcluirCadastro();
+begin
+  if (Application.MessageBox('Confirma excluir o cadastro selecionado ?', 'Confirmação', MB_ICONQUESTION + MB_YESNO) = IDYES) then
+    begin
+      lbPessoa.DeleteSelected;
+      btnExcluirPessoa.visible := false;
+    end;
+end;
+
 procedure TfrmCadastro.SalvarPessoaTXT;
 var
   lArquivo: TextFile;
   i: integer;
 begin
-  AssignFile(lArquivo, ExtractFilePath(Application.ExeName) + '\Pessoas.txt');
+  AssignFile(lArquivo, THelper.RetornarDiretorioArquivoPessoas);
   Rewrite(lArquivo);
 
   try

@@ -1,8 +1,10 @@
 object frmCadastro: TfrmCadastro
-  Left = 382
+  Left = 424
   Height = 240
-  Top = 174
+  Top = 217
   Width = 294
+  BorderIcons = []
+  BorderStyle = bsSingle
   Caption = 'Cadastro'
   ClientHeight = 240
   ClientWidth = 294
@@ -22,26 +24,26 @@ object frmCadastro: TfrmCadastro
     Height = 23
     Top = 28
     Width = 246
-    OnKeyPress = edtPessoaKeyPress
     OnKeyUp = edtPessoaKeyUp
     TabOrder = 0
   end
   object btnAddPessoa: TButton
     Left = 262
     Height = 25
-    Top = 28
+    Top = 27
     Width = 27
     Caption = '+'
     OnClick = btnAddPessoaClick
     TabOrder = 1
   end
   object lbPessoa: TListBox
-    Left = 6
+    Left = 8
     Height = 128
     Top = 60
     Width = 280
     Columns = 1
     ItemHeight = 0
+    OnClick = lbPessoaClick
     OnDblClick = lbPessoaDblClick
     TabOrder = 2
   end
@@ -62,5 +64,14 @@ object frmCadastro: TfrmCadastro
     Caption = 'Cancelar'
     OnClick = btnCancelarClick
     TabOrder = 4
+  end
+  object btnExcluirPessoa: TButton
+    Left = 8
+    Height = 25
+    Top = 202
+    Width = 24
+    Caption = '-'
+    OnClick = btnExcluirPessoaClick
+    TabOrder = 5
   end
 end

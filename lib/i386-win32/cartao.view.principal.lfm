@@ -1,0 +1,174 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 263
+  Height = 520
+  Top = 115
+  Width = 1117
+  Caption = 'Cartão'
+  ClientHeight = 500
+  ClientWidth = 1117
+  KeyPreview = True
+  Menu = mMenu
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '2.0.2.0'
+  object sgPrincipal: TStringGrid
+    Left = 8
+    Height = 425
+    Top = 16
+    Width = 1096
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ColCount = 0
+    FixedCols = 0
+    FixedRows = 0
+    RowCount = 0
+    TabOrder = 0
+    OnClick = sgPrincipalClick
+    OnDblClick = SelecionarValor
+    OnKeyUp = sgPrincipalKeyUp
+    OnSelectCell = sgPrincipalSelectCell
+  end
+  object Label2: TLabel
+    Left = 8
+    Height = 25
+    Top = 444
+    Width = 139
+    Anchors = [akLeft, akBottom]
+    Caption = 'Total importado:'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 8
+    Height = 25
+    Top = 472
+    Width = 152
+    Anchors = [akLeft, akBottom]
+    Caption = 'Total selecionado:'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object lblTotalImportado: TLabel
+    Left = 165
+    Height = 25
+    Top = 444
+    Width = 60
+    Anchors = [akLeft, akBottom]
+    Caption = 'R$ 0,00'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object lblTotalSelecionado: TLabel
+    Left = 165
+    Height = 25
+    Top = 472
+    Width = 60
+    Anchors = [akLeft, akBottom]
+    Caption = 'R$ 0,00'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 304
+    Height = 25
+    Top = 472
+    Width = 85
+    Anchors = [akLeft, akBottom]
+    Caption = 'Diferença:'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object lblDiferenca: TLabel
+    Left = 394
+    Height = 25
+    Top = 472
+    Width = 60
+    Anchors = [akLeft, akBottom]
+    Caption = 'R$ 0,00'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object odDiretorio: TOpenDialog
+    Filter = 'Arquivos de texto|*.txt'
+    left = 1072
+    top = 480
+  end
+  object mMenu: TMainMenu
+    left = 992
+    top = 456
+    object MenuItem1: TMenuItem
+      Caption = 'Arquivo'
+      object mSalvar: TMenuItem
+        Caption = 'Salvar'
+        ShortCut = 16467
+        OnClick = mSalvarClick
+      end
+      object mAbrir: TMenuItem
+        Caption = 'Abrir'
+        ShortCut = 24641
+        OnClick = mAbrirClick
+      end
+      object MenuItem3: TMenuItem
+        Caption = 'Importar'
+        object mImportarTXT: TMenuItem
+          Caption = 'Importar TXT'
+          ShortCut = 16462
+          OnClick = mImportarTXTClick
+        end
+      end
+      object mCadastro: TMenuItem
+        Caption = 'Cadastro'
+        object mCadastroPessoa: TMenuItem
+          Caption = 'Pessoa'
+          OnClick = mCadastroPessoaClick
+        end
+      end
+      object mLimparTela: TMenuItem
+        Caption = 'Limpar Tela'
+        OnClick = mLimparTelaClick
+      end
+    end
+    object mRelatorio: TMenuItem
+      Caption = 'Relatório'
+      OnClick = mRelatorioClick
+    end
+    object mSobre: TMenuItem
+      Caption = 'Sobre'
+    end
+  end
+end

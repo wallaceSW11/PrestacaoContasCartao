@@ -31,7 +31,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="9">
       <Unit0>
         <Filename Value="Cartao.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -39,7 +39,7 @@
       <Unit1>
         <Filename Value="cartao.view.principal.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
+        <ComponentName Value="frmPrincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Cartao.View.Principal"/>
@@ -77,6 +77,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uGridHelper"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="Helper\cartao.helper.diretorios.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Cartao.Helper.Diretorios"/>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -87,6 +92,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="Helper"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
@@ -98,7 +104,7 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="3">
+    <Exceptions Count="4">
       <Item1>
         <Name Value="EAbort"/>
       </Item1>
@@ -108,6 +114,9 @@
       <Item3>
         <Name Value="EFOpenError"/>
       </Item3>
+      <Item4>
+        <Name Value="EGridException"/>
+      </Item4>
     </Exceptions>
   </Debugging>
 </CONFIG>
