@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Grids, StdCtrls, Menus,
   cartao.view.relatorio, cartao.view.cadastro, uGridHelper, IniFiles,
-  LCLType, cartao.Helper.diretorios;
+  LCLType, cartao.Helper.diretorios, cartao.model.ListaPessoa;
 
 type
 
@@ -55,7 +55,6 @@ type
     FTotalImportado: double;
     FTotalSelecionado: double;
     FDiretorioArquivo: string;
-    procedure AddColuna(pTitulo: string; pTamanho: integer);
     procedure AlterarCorLabel(pValor: double);
     procedure AtivarBotaoSalvar_Cadastro(pAtivar:boolean = True);
     procedure AtualizarValorLabel(pLabel: TLabel; pValor: double);
@@ -77,6 +76,7 @@ type
     procedure SalvarDadosGrid;
     procedure SomarValoresLinha();
     function ValidarArquivo(): Boolean;
+    procedure ValidarArquivoPessoa;
     procedure ValidarArquivoTemp;
     procedure ZerarValores;
     procedure PreencherGrid(pArquivo: TIniFile; pLista: TStringList);
@@ -100,9 +100,24 @@ end;
 
 procedure TfrmPrincipal.ProcedimentosIniciais;
 begin
+  ValidarArquivoPessoa;
   CriarColunasGrid;
   ValidarArquivoTemp;
   mSalvar.Enabled:= false;
+end;
+
+procedure TfrmPrincipal.ValidarArquivoPessoa;
+begin
+  if not FileExists(THelper.RetornarDiretorioArquivoPessoas) then
+    begin
+      showmessage('Por favor, cadastre as pessoas na tela a seguir e clique em Salvar');
+      lTela := TfrmCadastro.create(nil);
+      try
+        lTela.showmodal;
+      finally
+        lTela.free;
+      end;
+    end;
 end;
 
 procedure TfrmPrincipal.ValidarArquivoTemp;
@@ -263,14 +278,6 @@ begin
 
   result := strtofloat(lValorSelecionado);
 end;
-
-//procedure TfrmPrincipal.sgPrincipalSelectCell(Sender: TObject; aCol: Integer);
-//begin
-//  sgPrincipal.Options := sgPrincipal.Options - [goEditing];
-//
-//  if ACol > 5 then
-//    sgPrincipal.Options := sgPrincipal.Options + [goEditing]
-//end;
 
 procedure TfrmPrincipal.CalcularTotalSelecionado;
 var
@@ -479,22 +486,15 @@ begin
   sgPrincipal.RowCount := 1;
   sgPrincipal.Options := [goFixedHorzLine, goFixedVertLine, goHorzLine, goVertLine];
 
-  AddColuna('ID',0);
-  AddColuna('Marcado',0);
-  AddColuna('Data',70);
-  AddColuna('Descrição',250);
-  AddColuna('Valor',100);
-  AddColuna('Selecionado',100);
+  sgPrincipal.AddColuna('ID',0);
+  sgPrincipal.AddColuna('Marcado',0);
+  sgPrincipal.AddColuna('Data',70);
+  sgPrincipal.AddColuna('Descrição',250);
+  sgPrincipal.AddColuna('Valor',100);
+  sgPrincipal.AddColuna('Selecionado',100);
 
-  GerarColunaPessoa(CarregarListaPessoa);
+  GerarColunaPessoa(TListaPessoa.RetornarListaPessoa);
   sgprincipal.RemoverUltimaColuna;
-end;
-
-procedure TfrmPrincipal.AddColuna(pTitulo: string; pTamanho: integer);
-begin
-  sgPrincipal.Cells[sgPrincipal.colcount-1,0] := pTitulo;
-  sgPrincipal.ColWidths[sgPrincipal.colcount-1] := pTamanho;
-  sgprincipal.ColCount:=sgprincipal.ColCount+1;
 end;
 
 procedure TfrmPrincipal.GerarColunaPessoa(pListaPessoa: TStringList);
@@ -502,7 +502,7 @@ var
   i: integer;
 begin
   for i := 0 to pred(pListaPessoa.count) do
-    AddColuna(pListaPessoa[i],80);
+    sgPrincipal.AddColuna(pListaPessoa[i],80);
 end;
 
 { código duplicado - Favor ajustar }

@@ -14,7 +14,8 @@ type
     procedure RetirarFoco;
     procedure AjustarColunasGrid;
     procedure AddLinha;
-    procedure AddColuna;
+    procedure AddColuna(pTitulo: string; pTamanho: integer);
+    procedure RemoverUltimaColuna;
 end;
 
 implementation
@@ -39,10 +40,19 @@ begin
     Self.RowCount := Self.RowCount + 1;
 end;
 
-procedure THelperGrid.AddColuna;
+procedure THelperGrid.AddColuna(pTitulo: string; pTamanho: integer);
 begin
+  sgPrincipal.Cells[sgPrincipal.colcount-1,0] := pTitulo;
+  sgPrincipal.ColWidths[sgPrincipal.colcount-1] := pTamanho;
+  sgprincipal.ColCount:=sgprincipal.ColCount+1;
+
   //if (Self.cells[Self.colcount-1,0] <> '') then
   // Self.colcount := Self.colcount + 1;
+end;
+
+procedure THelperGrid.RemoverUltimaColuna;
+begin
+  self.ColCount:=self.ColCount-1;
 end;
 
 end.

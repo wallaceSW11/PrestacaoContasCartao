@@ -9,7 +9,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, Cartao.View.Principal, cartao.controller.cartao,
   cartao.model.entidades.Lancamento, cartao.view.relatorio,
-  cartao.view.cadastro, uGridHelper, cartao.helper.diretorios;
+  cartao.view.cadastro, uGridHelper, cartao.helper.diretorios, cartao.model.ListaPessoa;
 
 {$R *.res}
 

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  cartao.helper.diretorios, LCLType;
+  cartao.helper.diretorios, LCLType, cartao.model.ListaPessoa;
 
 type
 
@@ -118,21 +118,12 @@ begin
   btnExcluirPessoa.visible := (lbpessoa.itemindex > 0)
 end;
 
-
-{ código duplicado - Favor ajustar }
 procedure TfrmCadastro.CarregarListaPessoa;
 var
-  lLinhas: Tstringlist;
   i: integer;
 begin
-  lLinhas := TStringlist.create;
-  lLinhas.LoadFromFile(THelper.RetornarDiretorioArquivoPessoas);
-  lbPessoa.clear;
-
-  for i := 0 to pred(lLinhas.count) do
-  begin
-    lbPessoa.items.add(lLinhas.strings[i]);
-  end;
+  for i := 0 to pred(TListaPessoa.RetornarListaPessoa.count) do
+    lbPessoa.items.add(TListaPessoa.RetornarListaPessoa.strings[i]);
 end;
 
 procedure TfrmCadastro.lbPessoaDblClick(Sender: TObject);
