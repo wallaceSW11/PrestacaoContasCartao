@@ -115,7 +115,7 @@ end;
 
 procedure TfrmCadastro.lbPessoaClick(Sender: TObject);
 begin
-  btnExcluirPessoa.visible := (lbpessoa.itemindex > 0)
+  btnExcluirPessoa.visible := (lbpessoa.itemindex >= 0)
 end;
 
 procedure TfrmCadastro.CarregarListaPessoa;
@@ -133,7 +133,9 @@ begin
 
   edtPessoa.text := lbPessoa.items[lbpessoa.itemindex];
   lbPessoa.DeleteSelected;
+  btnExcluirPessoa.visible := false;
 end;
+
 
 procedure TfrmCadastro.ExcluirCadastro();
 begin

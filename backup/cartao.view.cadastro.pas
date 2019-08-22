@@ -122,8 +122,8 @@ procedure TfrmCadastro.CarregarListaPessoa;
 var
   i: integer;
 begin
-  for i := 0 to pred(TListaPessoa.ListaPessoa.count) do
-    lbPessoa.items.add(TListaPessoa.ListaPessoa.strings[i]);
+  for i := 0 to pred(TListaPessoa.RetornarListaPessoa.count) do
+    lbPessoa.items.add(TListaPessoa.RetornarListaPessoa.strings[i]);
 end;
 
 procedure TfrmCadastro.lbPessoaDblClick(Sender: TObject);
@@ -133,7 +133,9 @@ begin
 
   edtPessoa.text := lbPessoa.items[lbpessoa.itemindex];
   lbPessoa.DeleteSelected;
+  btnExcluirPessoa.visible := false;
 end;
+
 
 procedure TfrmCadastro.ExcluirCadastro();
 begin
