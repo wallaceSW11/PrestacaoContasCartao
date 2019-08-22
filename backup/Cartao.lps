@@ -8,10 +8,9 @@
       <Unit0>
         <Filename Value="Cartao.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="88" Y="12"/>
-        <UsageCount Value="100"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="110"/>
       </Unit0>
       <Unit1>
         <Filename Value="cartao.view.principal.pas"/>
@@ -20,9 +19,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Cartao.View.Principal"/>
-        <TopLine Value="108"/>
-        <CursorPos X="43" Y="119"/>
-        <UsageCount Value="100"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="348"/>
+        <CursorPos X="62" Y="361"/>
+        <UsageCount Value="110"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -33,7 +33,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="31" Y="24"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="110"/>
       </Unit2>
       <Unit3>
         <Filename Value="cartao.controller.cartao.pas"/>
@@ -41,7 +41,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="28" Y="30"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="110"/>
       </Unit3>
       <Unit4>
         <Filename Value="cartao.model.entidades.lancamento.pas"/>
@@ -50,7 +50,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="20" Y="27"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="110"/>
       </Unit4>
       <Unit5>
         <Filename Value="cartao.view.relatorio.pas"/>
@@ -58,10 +58,9 @@
         <ComponentName Value="frmRelatorio"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="6"/>
-        <CursorPos X="14" Y="14"/>
-        <UsageCount Value="100"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="57" Y="15"/>
+        <UsageCount Value="110"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit5>
@@ -71,11 +70,10 @@
         <ComponentName Value="frmCadastro"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="22"/>
-        <CursorPos X="49" Y="32"/>
-        <UsageCount Value="76"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="143"/>
+        <CursorPos X="35" Y="35"/>
+        <UsageCount Value="86"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit6>
@@ -83,19 +81,18 @@
         <Filename Value="ugridhelper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uGridHelper"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="31"/>
-        <CursorPos X="34" Y="47"/>
-        <UsageCount Value="75"/>
+        <EditorIndex Value="5"/>
+        <CursorPos X="22" Y="12"/>
+        <UsageCount Value="85"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="Helper\cartao.helper.diretorios.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Cartao.Helper.Diretorios"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <CursorPos X="41" Y="8"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
@@ -103,9 +100,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="cartao.model.ListaPessoa"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="24"/>
-        <CursorPos X="49" Y="25"/>
-        <UsageCount Value="25"/>
+        <CursorPos X="5" Y="10"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
       </Unit9>
       <Unit10>
@@ -114,171 +110,170 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9886"/>
         <CursorPos Y="9899"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="31"/>
       </Unit10>
       <Unit11>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2904"/>
         <CursorPos Y="2917"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="24"/>
       </Unit11>
       <Unit12>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2161"/>
         <CursorPos Y="2174"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="24"/>
       </Unit12>
       <Unit13>
         <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5409"/>
         <CursorPos Y="5420"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="24"/>
       </Unit13>
       <Unit14>
         <Filename Value="C:\lazarus\lcl\include\buttoncontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="44"/>
         <CursorPos Y="56"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit14>
       <Unit15>
         <Filename Value="C:\lazarus\lcl\include\buttons.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="158"/>
         <CursorPos Y="170"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit15>
       <Unit16>
         <Filename Value="Helper\cartao.helper.valores.pas"/>
         <UnitName Value="Cartao.Helper.Valores"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="37" Y="6"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="19"/>
       </Unit16>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="63" Column="33" TopLine="43"/>
+        <Filename Value="cartao.view.cadastro.pas"/>
+        <Caret Line="140" Column="68" TopLine="125"/>
       </Position1>
       <Position2>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="480" Column="40" TopLine="460"/>
+        <Caret Line="119" Column="43" TopLine="108"/>
       </Position2>
       <Position3>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="493" Column="43" TopLine="473"/>
+        <Caret Line="470" Column="37" TopLine="459"/>
       </Position3>
       <Position4>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="580" Column="43" TopLine="560"/>
+        <Caret Line="319" Column="83" TopLine="260"/>
       </Position4>
       <Position5>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="63" Column="33" TopLine="52"/>
+        <Caret Line="470" Column="7" TopLine="468"/>
       </Position5>
       <Position6>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="480" Column="40" TopLine="460"/>
+        <Caret Line="337" Column="80" TopLine="317"/>
       </Position6>
       <Position7>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="498" Column="7" TopLine="491"/>
+        <Caret Line="330" Column="52" TopLine="324"/>
       </Position7>
       <Position8>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="95" TopLine="83"/>
+        <Caret Line="469" Column="68" TopLine="454"/>
       </Position8>
       <Position9>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="481" Column="42" TopLine="461"/>
+        <Caret Line="317" Column="35" TopLine="306"/>
       </Position9>
       <Position10>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="481" Column="56" TopLine="471"/>
+        <Caret Line="337" Column="3" TopLine="316"/>
       </Position10>
       <Position11>
-        <Filename Value="cartao.view.cadastro.pas"/>
-        <Caret Line="123" Column="15" TopLine="111"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="340" Column="3" TopLine="324"/>
       </Position11>
       <Position12>
-        <Filename Value="cartao.view.cadastro.pas"/>
-        <Caret Line="15" Column="37"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="633" TopLine="609"/>
       </Position12>
       <Position13>
-        <Filename Value="Helper\cartao.model.listapessoa.pas"/>
-        <Caret Line="56" TopLine="38"/>
+        <Filename Value="cartao.view.principal.pas"/>
       </Position13>
       <Position14>
-        <Filename Value="Helper\cartao.model.listapessoa.pas"/>
-        <Caret Line="33" Column="29" TopLine="16"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="336" Column="43" TopLine="323"/>
       </Position14>
       <Position15>
-        <Filename Value="Helper\cartao.model.listapessoa.pas"/>
-        <Caret Line="10" TopLine="5"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="338" Column="34" TopLine="324"/>
       </Position15>
       <Position16>
-        <Filename Value="Helper\cartao.model.listapessoa.pas"/>
-        <Caret Line="48" Column="26" TopLine="28"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="336" Column="47" TopLine="320"/>
       </Position16>
       <Position17>
-        <Filename Value="Helper\cartao.model.listapessoa.pas"/>
-        <Caret Line="33" Column="29" TopLine="22"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="75" Column="29" TopLine="75"/>
       </Position17>
       <Position18>
-        <Filename Value="Helper\cartao.model.listapessoa.pas"/>
-        <Caret Line="21" Column="53" TopLine="12"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="336" Column="48" TopLine="325"/>
       </Position18>
       <Position19>
-        <Filename Value="cartao.view.cadastro.pas"/>
-        <Caret Line="126" Column="56" TopLine="113"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="75" Column="50" TopLine="75"/>
       </Position19>
       <Position20>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="475" Column="18" TopLine="469"/>
+        <Caret Line="345" Column="69" TopLine="328"/>
       </Position20>
       <Position21>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="108" Column="24" TopLine="97"/>
+        <Caret Line="333" Column="70" TopLine="320"/>
       </Position21>
       <Position22>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="563" TopLine="551"/>
+        <Caret Line="346" Column="3" TopLine="334"/>
       </Position22>
       <Position23>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="498" Column="23" TopLine="488"/>
+        <Caret Line="640" TopLine="616"/>
       </Position23>
       <Position24>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="109" Column="39" TopLine="101"/>
+        <Caret Line="332" Column="15" TopLine="321"/>
       </Position24>
       <Position25>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="111" Column="3" TopLine="87"/>
+        <Caret Line="353" Column="29" TopLine="346"/>
       </Position25>
       <Position26>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="108" Column="56" TopLine="96"/>
+        <Caret Line="348" Column="35" TopLine="330"/>
       </Position26>
       <Position27>
         <Filename Value="cartao.view.principal.pas"/>
-        <Caret Line="109" Column="46" TopLine="98"/>
+        <Caret Line="492" Column="62" TopLine="478"/>
       </Position27>
       <Position28>
-        <Filename Value="cartao.view.cadastro.pas"/>
-        <Caret Line="127" Column="56" TopLine="114"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="362" Column="72" TopLine="344"/>
       </Position28>
       <Position29>
-        <Filename Value="cartao.view.cadastro.pas"/>
-        <Caret Line="152" Column="22" TopLine="139"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="356" Column="42" TopLine="344"/>
       </Position29>
       <Position30>
-        <Filename Value="cartao.view.cadastro.pas"/>
-        <Caret Line="137" Column="37" TopLine="130"/>
+        <Filename Value="cartao.view.principal.pas"/>
+        <Caret Line="366" Column="81" TopLine="345"/>
       </Position30>
     </JumpHistory>
     <RunParams>

@@ -24,18 +24,19 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnExcluirPessoaClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
-    procedure edtPessoaKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
-      );
+    procedure edtPessoaKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure lbPessoaClick(Sender: TObject);
     procedure lbPessoaDblClick(Sender: TObject);
   private
+    const
+  		  CONFIRMA_EXCLUIR_CADASTRO = 'Confirma excluir o cadastro selecionado ?';
+      CONFIRMACAO = 'Confirmação';
     procedure AddPessoa;
     procedure CarregarListaPessoa;
     procedure ExcluirCadastro();
     procedure SalvarPessoaTXT;
-
   public
 
   end;
@@ -57,7 +58,7 @@ end;
 procedure TfrmCadastro.AddPessoa;
 begin
   if trim(edtPessoa.text) = '' then
-  exit;
+  			exit;
 
   lbPessoa.Items.Add(edtPessoa.text);
   edtPessoa.clear();
@@ -139,7 +140,7 @@ end;
 
 procedure TfrmCadastro.ExcluirCadastro();
 begin
-  if (Application.MessageBox('Confirma excluir o cadastro selecionado ?', 'Confirmação', MB_ICONQUESTION + MB_YESNO) = IDYES) then
+  if (Application.MessageBox(CONFIRMA_EXCLUIR_CADASTRO, CONFIRMACAO, MB_ICONQUESTION + MB_YESNO) = IDYES) then
     begin
       lbPessoa.DeleteSelected;
       btnExcluirPessoa.visible := false;
@@ -156,14 +157,10 @@ begin
 
   try
     for i := 0 to pred(lbPessoa.count) do
-    begin
       writeln(larquivo, lbPessoa.items[i]);
-    end;
-
   finally
     closefile(larquivo);
   end;
-
 end;
 
 end.

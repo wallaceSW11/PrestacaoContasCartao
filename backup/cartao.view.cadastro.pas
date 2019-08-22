@@ -24,8 +24,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnExcluirPessoaClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
-    procedure edtPessoaKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
-      );
+    procedure edtPessoaKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure lbPessoaClick(Sender: TObject);
@@ -35,7 +34,6 @@ type
     procedure CarregarListaPessoa;
     procedure ExcluirCadastro();
     procedure SalvarPessoaTXT;
-
   public
 
   end;
@@ -57,7 +55,7 @@ end;
 procedure TfrmCadastro.AddPessoa;
 begin
   if trim(edtPessoa.text) = '' then
-  exit;
+  			exit;
 
   lbPessoa.Items.Add(edtPessoa.text);
   edtPessoa.clear();
@@ -115,7 +113,7 @@ end;
 
 procedure TfrmCadastro.lbPessoaClick(Sender: TObject);
 begin
-  btnExcluirPessoa.visible := (lbpessoa.itemindex > 0)
+  btnExcluirPessoa.visible := (lbpessoa.itemindex >= 0)
 end;
 
 procedure TfrmCadastro.CarregarListaPessoa;
@@ -156,14 +154,10 @@ begin
 
   try
     for i := 0 to pred(lbPessoa.count) do
-    begin
       writeln(larquivo, lbPessoa.items[i]);
-    end;
-
   finally
     closefile(larquivo);
   end;
-
 end;
 
 end.

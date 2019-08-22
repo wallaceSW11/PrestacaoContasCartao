@@ -72,6 +72,7 @@ type
     function CorpoRelatorio(pColuna, pLinha: integer): string;
     procedure ImportarArquivoTXT();
     procedure ProcedimentosIniciais;
+    function RetornarDescricao_Valor(pDescricao, pValor: string): string;
     function Rodape(pTotal: string):string;
     procedure SalvarDadosGrid;
     procedure SomarValoresLinha();
@@ -311,28 +312,54 @@ end;
 
 function TfrmPrincipal.Cabecalho(): String;
 var
-  lEspaco1, lEspaco2: string;
+  lEspaco1, lEspaco2, lSeparador: string;
 begin
   lEspaco1 := stringOfChar(' ', 7);
   lEspaco2 := stringOfChar(' ', 35);
-  result := 'Data' + lEspaco1 + 'Descrição'+ lEspaco2 + 'Valor';
+  lSeparador := stringofchar('-',62);
+  result := 'Data' + lEspaco1 + 'Descrição'+ lEspaco2 + 'Valor' +#13+lSeparador;
 end;
 
 function TfrmPrincipal.CorpoRelatorio(pColuna, pLinha: integer): string;
 var
-  lEspaco2: string;
+  lData, lDescricao, lValor: string;
 begin
-  lEspaco2 := stringOfChar(' ', 44 - length(sgPrincipal.cells[3,pLinha]));
-  result := sgPrincipal.cells[2,pLinha] + ' ' + sgPrincipal.cells[3,pLinha] + lEspaco2 + sgPrincipal.cells[pColuna,pLinha];
+  lData := sgPrincipal.cells[2,pLinha]+ ' ';
+  lDescricao := sgPrincipal.cells[3,pLinha];
+  lValor := sgPrincipal.cells[pColuna,pLinha];
+  result := lData + RetornarDescricao_Valor(lDescricao, lValor);
+end;
+
+function TfrmPrincipal.RetornarDescricao_Valor(pDescricao, pValor: string):string;
+var
+  lTamanhoValor, lTamanhoDescricao: integer;
+begin
+  lTamanhoDescricao := length(pDescricao);
+  lTamanhoValor := length(pValor);
+
+  case lTamanhoValor of
+  7: result := pDescricao + stringOfChar(' ', 44 - lTamanhoDescricao) + pValor;
+  6: result := pDescricao + stringOfChar(' ', 45 - lTamanhoDescricao) + pValor;
+  5: result := pDescricao + stringOfChar(' ', 46 - lTamanhoDescricao) + pValor;
+  4: result := pDescricao + stringOfChar(' ', 47 - lTamanhoDescricao) + pValor;
+  end;
 end;
 
 function TfrmPrincipal.Rodape(pTotal: string): string;
 var
-  lEspaco, lSeparador: string;
+  lLinha: string;
+  lTamanhoValor: integer;
 begin
-  lEspaco := stringofchar('.', 49);
-  lSeparador := stringofchar('_', 60);
-  result := lSeparador + #13 + 'Total:' + lEspaco + pTotal + #13;
+  lTamanhoValor := length(pTotal);
+  lLinha := stringofchar('-', 62);
+
+  case lTamanhoValor of
+  8: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 54 - 6) + pTotal + #13 + lLinha + #13;
+  7: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 55 - 6) + pTotal + #13 + lLinha + #13;
+  6: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 56 - 6) + pTotal + #13 + lLinha + #13;
+  5: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 57 - 6) + pTotal + #13 + lLinha + #13;
+  4: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 58 - 6) + pTotal + #13 + lLinha + #13;
+  end;
 end;
 
 procedure TfrmPrincipal.btnCadastroClick(Sender: TObject);
@@ -464,7 +491,7 @@ begin
   for i := 6 to pred(sgPrincipal.ColCount) do
   begin
     lTotal := 0;
-    lTela.mmRelatorio.lines.add(sgPrincipal.cells[i,0]);
+    lTela.mmRelatorio.lines.add('Nome: ' + sgPrincipal.cells[i,0]);
     lTela.mmRelatorio.lines.add(Cabecalho);
 
     for j := 1 to pred(sgPrincipal.RowCount) do
@@ -475,7 +502,7 @@ begin
         lTotal := lTotal + strtofloat(sgPrincipal.cells[i,j]);
       end;
     end;
-    lTela.mmRelatorio.lines.add(rodape(floattostr(lTotal)));
+    lTela.mmRelatorio.lines.add(rodape(formatfloat('0.00', lTotal)));
   end;
 
  lTela.showmodal;
@@ -603,5 +630,7 @@ begin
 end;
 
 end.
+
+
 
 

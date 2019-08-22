@@ -18,7 +18,7 @@ type
 
     public
      // constructor Create;
-      class function RetornarListaPessoa:TListaPessoa;
+      class function RetornarListaPessoa:TStringList;
       //property ListaPessoa: TStringList read FListaPessoa write FListaPessoa;
   end;
 
@@ -26,7 +26,7 @@ implementation
 
 { TListaPessoa }
 
-class function TlistaPessoa.RetornarListaPessoa:TListaPessoa;
+class function TlistaPessoa.RetornarListaPessoa:TStringList;
 var
   lLinhas: Tstringlist;
   i: integer;
