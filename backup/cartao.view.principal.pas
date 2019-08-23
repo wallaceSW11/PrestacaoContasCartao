@@ -72,7 +72,6 @@ type
     procedure CalcularTotalSelecionado;
     procedure ImportarArquivoTXT();
     procedure ProcedimentosIniciais;
-    function RetornarNovoGrid(): TStringGrid;
     procedure SalvarDadosGrid;
     procedure SomarValoresLinha();
     function ValidarArquivo(): Boolean;
@@ -190,6 +189,8 @@ begin
   SomarValoresLinha();
 end;
 
+
+
 procedure TfrmPrincipal.sgPrincipalKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -211,7 +212,10 @@ begin
 
   for i := 6 to pred(sgPrincipal.ColCount) do
     if (sgPrincipal.Cells[i, sgPrincipal.Row] <> '') then
-      lValor := lValor + strtofloat(sgPrincipal.Cells[i, sgPrincipal.Row]);
+    begin
+      if (TryStrToFloat(strtofloat(sgPrincipal.Cells[i, sgPrincipal.Row])) then
+      			lValor := lValor + strtofloat(sgPrincipal.Cells[i, sgPrincipal.Row]);
+    end;
 
   sgPrincipal.cells[5, sgPrincipal.row] := formatfloat('0.00', lValor);
 
@@ -436,7 +440,7 @@ var
   lTela: TfrmRelatorio;
 begin
   lTela := TfrmRelatorio.create(nil);
-  lTela.mmRelatorio.lines := TRelatorio.new(RetornarCopiaGrid).RetornarRelatorioGerado;
+  lTela.mmRelatorio.lines := TRelatorio.new(sgPrincipal).RetornarRelatorioGerado;
   try
     lTela.showmodal;
   finally
@@ -444,23 +448,23 @@ begin
   end;
 end;
 
-function TfrmPrincipal.RetornarCopiaGrid():TStringGrid;
-var
-  c, r: integer;
-  lGrid: TStringGrid;
-begin
-  lGrid := TStringGrid.create(nil);
-
-  lgrid.ColCount := sgprincipal.ColCount;
-  lgrid.rowcount := sgprincipal.RowCount;
-
-  for c := 0 to pred(sgprincipal.ColCount) do
-    for r := 0 to pred(sgprincipal.RowCount) do
-      lgrid.cells[c,r] := sgprincipal.cells[c,r];
-
-
-  result := lGrid;
-end;
+//function TfrmPrincipal.RetornarCopiaGrid():TStringGrid;
+//var
+//  c, r: integer;
+//  lGrid: TStringGrid;
+//begin
+//  lGrid := TStringGrid.create(nil);
+//
+//  lgrid.ColCount := sgprincipal.ColCount;
+//  lgrid.rowcount := sgprincipal.RowCount;
+//
+//  for c := 0 to pred(sgprincipal.ColCount) do
+//    for r := 0 to pred(sgprincipal.RowCount) do
+//      lgrid.cells[c,r] := sgprincipal.cells[c,r];
+//
+//
+//  result := lGrid;
+//end;
 
 procedure TfrmPrincipal.CriarColunasGrid;
 begin

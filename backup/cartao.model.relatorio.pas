@@ -42,18 +42,18 @@ begin
   FListaRelatorio := TStringList.Create;
   RetirarValorZerado;
 
-  for i := 6 to pred(FStringGrid.ColCount) do
+  for i := 6 to pred(FStringGridCopia.ColCount) do
   begin
     lTotal := 0;
-    FListaRelatorio.add('Nome: ' + FStringGrid.cells[i,0]);
+    FListaRelatorio.add('Nome: ' + FStringGridCopia.cells[i,0]);
     FListaRelatorio.add(Cabecalho);
 
-    for j := 1 to pred(FStringGrid.RowCount) do
+    for j := 1 to pred(FStringGridCopia.RowCount) do
     begin
-      if (FStringGrid.cells[i,j] <> '') then
+      if (FStringGridCopia.cells[i,j] <> '') then
       begin
         FListaRelatorio.add(CorpoRelatorio(i,j));
-        lTotal := lTotal + strtofloat(FStringGrid.cells[i,j]);
+        lTotal := lTotal + strtofloat(FStringGridCopia.cells[i,j]);
       end;
     end;
     FListaRelatorio.add(rodape(formatfloat('0.00', lTotal)));
@@ -72,7 +72,6 @@ begin
     for r := 0 to pred(FStringGrid.RowCount) do
       FStringGridCopia.cells[c,r] := FStringGrid.cells[c,r];
 
-
   result := FStringGridCopia;
 end;
 
@@ -85,6 +84,7 @@ end;
 destructor TRelatorio.Destroy;
 begin
   FreeAndNil(FStringGrid);
+ // FreeAndNil(FStringGridCopia);
   inherited Destroy;
 end;
 
@@ -100,15 +100,15 @@ var
 begin
   lCont := 0;
 
-  for lCol := 6 to pred(FStringGrid.ColCount) do
+  for lCol := 6 to pred(FStringGridCopia.ColCount) do
   begin
     lCont2 := 0;
 
-    for lRow := 1 to pred(FStringGrid.RowCount) do
-      if (FStringGrid.cells[lCol,lRow] = trim('')) then
+    for lRow := 1 to pred(FStringGridCopia.RowCount) do
+      if (FStringGridCopia.cells[lCol,lRow] = trim('')) then
         lCont2 := lcont2 + 1;
 
-    if (lCont2 = pred(FStringGrid.RowCount)) then
+    if (lCont2 = pred(FStringGridCopia.RowCount)) then
     begin
       setLength(lListaExcluir, lcont + 1);
       lListaExcluir[lCont] := lCol;
@@ -117,7 +117,7 @@ begin
   end;
 
   for lQt := pred(lCont) downto 0 do
-    FStringGrid.DeleteCol(lListaExcluir[lQt]);
+    FStringGridCopia.DeleteCol(lListaExcluir[lQt]);
 end;
 
 function TRelatorio.Cabecalho(): String;
@@ -134,9 +134,9 @@ function TRelatorio.CorpoRelatorio(pColuna, pLinha: integer): string;
 var
   lData, lDescricao, lValor: string;
 begin
-  lData := FStringGrid.cells[2,pLinha]+ ' ';
-  lDescricao := FStringGrid.cells[3,pLinha];
-  lValor := FStringGrid.cells[pColuna,pLinha];
+  lData := FStringGridCopia.cells[2,pLinha]+ ' ';
+  lDescricao := FStringGridCopia.cells[3,pLinha];
+  lValor := FStringGridCopia.cells[pColuna,pLinha];
   result := lData + RetornarDescricao_Valor(lDescricao, lValor);
 end;
 
