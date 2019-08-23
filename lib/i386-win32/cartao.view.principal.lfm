@@ -123,15 +123,6 @@ object frmPrincipal: TfrmPrincipal
     ParentColor = False
     ParentFont = False
   end
-  object Button1: TButton
-    Left = 704
-    Height = 25
-    Top = 465
-    Width = 75
-    Caption = 'Button1'
-    OnClick = Button1Click
-    TabOrder = 1
-  end
   object odDiretorio: TOpenDialog
     Filter = 'Arquivos de texto|*.txt'
     left = 1072

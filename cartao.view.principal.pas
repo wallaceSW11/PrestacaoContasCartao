@@ -15,7 +15,6 @@ type
   { TfrmPrincipal }
 
   TfrmPrincipal = class(TForm)
-    Button1: TButton;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -73,6 +72,7 @@ type
     procedure CalcularTotalSelecionado;
     procedure ImportarArquivoTXT();
     procedure ProcedimentosIniciais;
+    function RetornarCopiaGrid(): TStringGrid;
     procedure SalvarDadosGrid;
     procedure SomarValoresLinha();
     function ValidarArquivo(): Boolean;
@@ -436,12 +436,30 @@ var
   lTela: TfrmRelatorio;
 begin
   lTela := TfrmRelatorio.create(nil);
-  lTela.mmRelatorio.lines := TRelatorio.new(sgPrincipal).RetornarRelatorioGerado;
+  lTela.mmRelatorio.lines := TRelatorio.new(RetornarCopiaGrid).RetornarRelatorioGerado;
   try
     lTela.showmodal;
   finally
     lTela.free;
   end;
+end;
+
+function TfrmPrincipal.RetornarCopiaGrid():TStringGrid;
+var
+  c, r: integer;
+  lGrid: TStringGrid;
+begin
+  lGrid := TStringGrid.create(nil);
+
+  lgrid.ColCount := sgprincipal.ColCount;
+  lgrid.rowcount := sgprincipal.RowCount;
+
+  for c := 0 to pred(sgprincipal.ColCount) do
+    for r := 0 to pred(sgprincipal.RowCount) do
+      lgrid.cells[c,r] := sgprincipal.cells[c,r];
+
+
+  result := lGrid;
 end;
 
 procedure TfrmPrincipal.CriarColunasGrid;
@@ -469,7 +487,7 @@ begin
     sgPrincipal.AddColuna(pListaPessoa[i],80);
 end;
 
-{ código duplicado - Favor ajustar }
+
 function TfrmPrincipal.CarregarListaPessoa(): TStringlist;
 var
   lLinhas: Tstringlist;
@@ -557,7 +575,7 @@ begin
     sgPrincipal.Cells[4,i+1] := pArquivo.ReadString(pLista.Strings[i], 'Valor', '');
     sgPrincipal.Cells[5,i+1] := pArquivo.ReadString(pLista.Strings[i], 'Selecionado', '');
 
-    for j := 0 to pred(CarregarListaPessoa.Count) do
+    for j := 0 to pred(CarregarListaPessoa.count) do
       sgPrincipal.Cells[j+6,i+1] := pArquivo.ReadString(pLista.Strings[i], 'ValorInformado_'+inttostr(j+6), '');
 
     FTotalImportado := FTotalImportado + strtofloat(sgPrincipal.Cells[4,i+1]);

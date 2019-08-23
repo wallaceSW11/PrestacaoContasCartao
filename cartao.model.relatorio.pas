@@ -15,9 +15,11 @@ type
     private
       FListaRelatorio: TStringList;
       FStringGrid: TStringGrid;
+      FStringGridCopia: TStringGrid;
       function Cabecalho(): String;
       function CorpoRelatorio(pColuna, pLinha: integer): string;
       procedure RetirarValorZerado;
+      function RetornarCopiaGrid(): TStringGrid;
       function RetornarDescricao_Valor(pDescricao, pValor: string): string;
       function Rodape(pTotal: string): string;
     public
@@ -56,19 +58,34 @@ begin
     end;
     FListaRelatorio.add(rodape(formatfloat('0.00', lTotal)));
   end;
-
-
   result := FListaRelatorio;
+end;
 
+function TRelatorio.RetornarCopiaGrid():TStringGrid;
+var
+  c, r: integer;
+begin
+  FStringGridCopia.ColCount := FStringGrid.ColCount;
+  FStringGridCopia.rowcount := FStringGrid.RowCount;
+
+  for c := 0 to pred(FStringGrid.ColCount) do
+    for r := 0 to pred(FStringGrid.RowCount) do
+      FStringGridCopia.cells[c,r] := FStringGrid.cells[c,r];
+
+
+  result := FStringGridCopia;
 end;
 
 constructor TRelatorio.Create(pStringGrid: TStringGrid);
 begin
- FStringGrid := pStringGrid;
+  FStringGrid := pStringGrid;
+  FStringGridCopia := TStringGrid.create(nil);
 end;
 
 destructor TRelatorio.Destroy;
 begin
+  FreeAndNil(FStringGrid);
+  FreeAndNil(FStringGridCopia);
   inherited Destroy;
 end;
 
@@ -79,130 +96,30 @@ end;
 
 procedure TRelatorio.RetirarValorZerado;
 var
-  i,j, l: integer;
-  lVazio: boolean;
+  lCol,lRow, lQt, lCont2, lCont: integer;
   lListaExcluir: array of integer;
-   lCont: integer;
 begin
   lCont := 0;
 
-  for i := 6 to pred(FStringGrid.ColCount) do
+  for lCol := 6 to pred(FStringGrid.ColCount) do
   begin
-    for j := 1 to pred(FStringGrid.RowCount) do
-    begin
-        if (FStringGrid.cells[i,j] <> trim('')) then
-          showmessage('Pren: ' + FStringGrid.cells[i,j] + 'lin: ' + inttostr(j) + ' col: ' + inttostr(i))
-        //break
-        //else
-        //
-        //begin
-        //  setLength(lListaExcluir, lcont + 1);
-        //  lListaExcluir[lCont] := i;
-        //  lCont := lcont + 1;
-        //end;
-        //else
-        //  lvazio := true;
-    end;
+    lCont2 := 0;
 
-    //if lVazio then
-    //  begin
-    //    setLength(lListaExcluir, lcont + 1);
-    //    lListaExcluir[lCont] := i;
-    //    lCont := lcont + 1;
-    //  end;
+    for lRow := 1 to pred(FStringGrid.RowCount) do
+      if (FStringGrid.cells[lCol,lRow] = trim('')) then
+        lCont2 := lcont2 + 1;
+
+    if (lCont2 = pred(FStringGrid.RowCount)) then
+    begin
+      setLength(lListaExcluir, lcont + 1);
+      lListaExcluir[lCont] := lCol;
+      lCont := lcont + 1;
+    end;
   end;
 
-  for l := 0 to pred(lCont) do
-    showmessage('ids: ' + inttostr(lListaExcluir[l]));
-
-  //FStringGrid.DeleteCol(lListaExcluir[l]);
-  //
-
-  //showmessage('Col2: ' + inttostr(FStringGrid.ColCount));
-  //showmessage('Lin2: ' + inttostr(FStringGrid.RowCount));
+  for lQt := pred(lCont) downto 0 do
+    FStringGrid.DeleteCol(lListaExcluir[lQt]);
 end;
-
-//procedure TRelatorio.RetirarValorZerado;
-//var
-//  i,j, l: integer;
-//  lVazio: boolean;
-//  lListaExcluir: array of integer;
-//   lCont: integer;
-//begin
-//  lCont := 0;
-//  //showmessage('Col: ' + inttostr(FStringGrid.ColCount));
-//  //showmessage('Lin: ' + inttostr(FStringGrid.RowCount));
-//
-//  for i := 6 to pred(FStringGrid.ColCount) do
-//  begin
-//    lVazio := false;
-//
-//    for j := 1 to pred(FStringGrid.RowCount) do
-//    begin
-//        if (FStringGrid.cells[i,j] <> trim('')) then
-//        			break
-//        else
-//          lvazio := true;
-//    end;
-//
-//    if lVazio then
-//      begin
-//        setLength(lListaExcluir, lcont + 1);
-//        lListaExcluir[lCont] := i;
-//        lCont := lcont + 1;
-//      end;
-//  end;
-//
-//  for l := 0 to lCont do
-//    showmessage('ids: ' + inttostr(lListaExcluir[l]));
-//
-//  //FStringGrid.DeleteCol(lListaExcluir[l]);
-//  //
-//
-//  //showmessage('Col2: ' + inttostr(FStringGrid.ColCount));
-//  //showmessage('Lin2: ' + inttostr(FStringGrid.RowCount));
-//end;
-
-//procedure TRelatorio.RetirarValorZerado;
-//var
-//  i,j, l: integer;
-//  lVazio: boolean;
-//  lListaExcluir: array of integer;
-//   lCont: integer;
-//begin
-//  lCont := 0;
-//  //showmessage('Col: ' + inttostr(FStringGrid.ColCount));
-//  //showmessage('Lin: ' + inttostr(FStringGrid.RowCount));
-//
-//  for i := 7 to pred(FStringGrid.ColCount) do
-//  begin
-//    lVazio := false;
-//
-//    for j := 1 to pred(FStringGrid.RowCount) do
-//    begin
-//        if (FStringGrid.cells[i,j] <> trim('')) then
-//        			break
-//        else
-//          lvazio := true;
-//    end;
-//
-//    if lVazio then
-//      begin
-//        setLength(lListaExcluir, lcont + 1);
-//        lListaExcluir[lCont] := i;
-//        lCont := lcont + 1;
-//      end;
-//  end;
-//
-//  for l := 0 to lCont do
-//    showmessage('ids: ' + inttostr(lListaExcluir[l]));
-//
-//  //FStringGrid.DeleteCol(lListaExcluir[l]);
-//  //
-//
-//  //showmessage('Col2: ' + inttostr(FStringGrid.ColCount));
-//  //showmessage('Lin2: ' + inttostr(FStringGrid.RowCount));
-//end;
 
 function TRelatorio.Cabecalho(): String;
 var
@@ -258,4 +175,5 @@ begin
 end;
 
 end.
+
 
