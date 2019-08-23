@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Grids, StdCtrls, Menus,
   cartao.view.relatorio, cartao.view.cadastro, uGridHelper, IniFiles,
-  LCLType, cartao.Helper.diretorios, cartao.model.ListaPessoa;
+  LCLType, cartao.Helper.diretorios, cartao.model.ListaPessoa,
+  cartao.model.relatorio;
 
 type
 
@@ -68,12 +69,8 @@ type
     procedure LimparTela;
     function MarcarValor(): Double;
     procedure CalcularTotalSelecionado;
-    function Cabecalho(): String;
-    function CorpoRelatorio(pColuna, pLinha: integer): string;
     procedure ImportarArquivoTXT();
     procedure ProcedimentosIniciais;
-    function RetornarDescricao_Valor(pDescricao, pValor: string): string;
-    function Rodape(pTotal: string):string;
     procedure SalvarDadosGrid;
     procedure SomarValoresLinha();
     function ValidarArquivo(): Boolean;
@@ -310,63 +307,6 @@ begin
  pLabel.caption := formatFloat('R$ 0.00', pValor);
 end;
 
-function TfrmPrincipal.Cabecalho(): String;
-var
-  lEspaco1, lEspaco2, lSeparador: string;
-begin
-  lEspaco1 := stringOfChar(' ', 7);
-  lEspaco2 := stringOfChar(' ', 35);
-  lSeparador := stringofchar('-',62);
-  result := 'Data' + lEspaco1 + 'Descrição'+ lEspaco2 + 'Valor' +#13+lSeparador;
-end;
-
-function TfrmPrincipal.CorpoRelatorio(pColuna, pLinha: integer): string;
-var
-  lData, lDescricao, lValor: string;
-begin
-  lData := sgPrincipal.cells[2,pLinha]+ ' ';
-  lDescricao := sgPrincipal.cells[3,pLinha];
-  lValor := sgPrincipal.cells[pColuna,pLinha];
-  result := lData + RetornarDescricao_Valor(lDescricao, lValor);
-end;
-
-function TfrmPrincipal.RetornarDescricao_Valor(pDescricao, pValor: string):string;
-var
-  lTamanhoValor, lTamanhoDescricao: integer;
-begin
-  lTamanhoDescricao := length(pDescricao);
-  lTamanhoValor := length(pValor);
-
-  case lTamanhoValor of
-  7: result := pDescricao + stringOfChar(' ', 44 - lTamanhoDescricao) + pValor;
-  6: result := pDescricao + stringOfChar(' ', 45 - lTamanhoDescricao) + pValor;
-  5: result := pDescricao + stringOfChar(' ', 46 - lTamanhoDescricao) + pValor;
-  4: result := pDescricao + stringOfChar(' ', 47 - lTamanhoDescricao) + pValor;
-  end;
-end;
-
-function TfrmPrincipal.Rodape(pTotal: string): string;
-var
-  lEspaco, lLinha: string;
-  lTamanhoValor: integer;
-begin
-  lTamanhoValor := length(pTotal);
-  lLinha := stringofchar('-', 62);
-
-  case lTamanhoValor of
-  8: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 54 - 6) + pTotal + #13 + lLinha + #13;
-  7: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 55 - 6) + pTotal + #13 + lLinha + #13;
-  6: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 56 - 6) + pTotal + #13 + lLinha + #13;
-  5: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 57 - 6) + pTotal + #13 + lLinha + #13;
-  4: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 58 - 6) + pTotal + #13 + lLinha + #13;
-  end;
-
-
-  //lEspaco := stringofchar(' ', 49);
-  //lLinha := stringofchar('-', 62);
-  //result := lLinha + #13 + 'Total:' + lEspaco + pTotal + #13 + lLinha + #13 +'*' +inttostr(length(pTotal));
-end;
-
 procedure TfrmPrincipal.btnCadastroClick(Sender: TObject);
 begin
   CadastroPessoa;
@@ -486,32 +426,15 @@ end;
 
 procedure TfrmPrincipal.GerarRelatorio;
 var
-  i, j: integer;
   lTela: TfrmRelatorio;
-  lTotal: double;
 begin
   lTela := TfrmRelatorio.create(nil);
-  lTela.mmRelatorio.clear;
-
-  for i := 6 to pred(sgPrincipal.ColCount) do
-  begin
-    lTotal := 0;
-    lTela.mmRelatorio.lines.add('Nome: ' + sgPrincipal.cells[i,0]);
-    lTela.mmRelatorio.lines.add(Cabecalho);
-
-    for j := 1 to pred(sgPrincipal.RowCount) do
-    begin
-      if (sgPrincipal.cells[i,j] <> '') then
-      begin
-        lTela.mmRelatorio.lines.add(CorpoRelatorio(i,j));
-        lTotal := lTotal + strtofloat(sgPrincipal.cells[i,j]);
-      end;
-    end;
-    lTela.mmRelatorio.lines.add(rodape(formatfloat('0.00', lTotal)));
+  lTela.mmRelatorio.lines := TRelatorio.new(sgPrincipal).RetornarRelatorioGerado;
+  try
+    lTela.showmodal;
+  finally
+    lTela.free;
   end;
-
- lTela.showmodal;
- lTela.free;
 end;
 
 procedure TfrmPrincipal.CriarColunasGrid;

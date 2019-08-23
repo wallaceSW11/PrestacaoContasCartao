@@ -31,7 +31,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="10">
+    <Units Count="11">
       <Unit0>
         <Filename Value="Cartao.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -87,6 +87,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="cartao.model.ListaPessoa"/>
       </Unit9>
+      <Unit10>
+        <Filename Value="cartao.model.relatorio.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="cartao.model.Relatorio"/>
+      </Unit10>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

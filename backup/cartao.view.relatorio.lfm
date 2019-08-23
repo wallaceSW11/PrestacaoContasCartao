@@ -21,6 +21,7 @@ object frmRelatorio: TfrmRelatorio
     Font.Pitch = fpFixed
     Font.Quality = fqDraft
     ParentFont = False
+    ReadOnly = True
     ScrollBars = ssAutoVertical
     TabOrder = 0
   end

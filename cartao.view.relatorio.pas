@@ -13,6 +13,7 @@ type
 
   TfrmRelatorio = class(TForm)
     mmRelatorio: TMemo;
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -25,6 +26,13 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TfrmRelatorio }
+
+procedure TfrmRelatorio.FormCreate(Sender: TObject);
+begin
+  mmRelatorio.clear;
+end;
 
 end.
 

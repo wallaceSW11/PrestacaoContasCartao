@@ -6,6 +6,7 @@ object frmRelatorio: TfrmRelatorio
   Caption = 'Relatório'
   ClientHeight = 515
   ClientWidth = 685
+  OnCreate = FormCreate
   Position = poMainFormCenter
   LCLVersion = '2.0.2.0'
   object mmRelatorio: TMemo
