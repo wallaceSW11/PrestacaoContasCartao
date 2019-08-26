@@ -15,6 +15,7 @@ type
   { TfrmPrincipal }
 
   TfrmPrincipal = class(TForm)
+    Button1: TButton;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -102,7 +103,7 @@ begin
   ValidarArquivoPessoa;
   CriarColunasGrid;
   ValidarArquivoTemp;
-  mSalvar.Enabled:= false;
+  AtivarBotaoSalvar_Cadastro(False);
 end;
 
 procedure TfrmPrincipal.ValidarArquivoPessoa;
@@ -365,6 +366,7 @@ procedure TfrmPrincipal.AtivarBotaoSalvar_Cadastro(pAtivar:boolean = True);
 begin
   mSalvar.Enabled := pAtivar;
   mCadastro.Enabled := not pAtivar;
+  mRelatorio.Enabled := pAtivar;
 end;
 
 procedure TfrmPrincipal.btnImportarClick(Sender: TObject);
@@ -374,7 +376,7 @@ end;
 
 procedure TfrmPrincipal.ImportarCartao;
 begin
-  odDiretorio.Filter := 'Arquivos de texto|*.txt';
+  odDiretorio.Filter := 'Arquivos de texto|*.txt|Arquivos de tabulação|*.csv';
   odDiretorio.execute;
   FDiretorioArquivo := odDiretorio.FileName;
 
@@ -388,8 +390,15 @@ begin
 end;
 
 procedure TfrmPrincipal.Button1Click(Sender: TObject);
+var
+  lCel: tdatetime;
+  ldata: string;
 begin
-  sgPrincipal.deletecol(8);
+  //lcel := strtodate(sgprincipal.cells[2,1]);
+  //lData := formatdatetime('dd/MM/yyyy', lcel);
+  showmessage('Dado: ' + sgprincipal.cells[2,1] + ' ' + inttostr(length(sgprincipal.cells[2,1])));
+  showmessage('Dado: ' + sgprincipal.cells[2,2] + ' ' + inttostr(length(sgprincipal.cells[2,2])));
+ // showmessage('Dado2: ' + lcel + ' ' + inttostr(length(lcel)));
 end;
 
 procedure TfrmPrincipal.SalvarDadosGrid;
@@ -474,6 +483,7 @@ begin
   sgPrincipal.AddColuna('Data',70);
   sgPrincipal.AddColuna('Descrição',250);
   sgPrincipal.AddColuna('Valor',100);
+
   sgPrincipal.AddColuna('Selecionado',100);
 
   GerarColunaPessoa(TListaPessoa.RetornarListaPessoa);
@@ -519,9 +529,7 @@ var
 begin
   colunas := TStringList.Create();
   linhas := TStringList.Create();
-
-  FTotalImportado := 0;
-
+  ZerarValores;
   CriarColunasGrid;
 
   try
@@ -529,15 +537,20 @@ begin
 
   For i:= 0 to linhas.Count - 1 do
   begin
-    colunas.Delimiter := ';';
     colunas.StrictDelimiter:= true;
+    colunas.Delimiter := ';';
     colunas.DelimitedText := linhas[i];
+
+    //showmessage('linha: ' + trim(linhas[i]) + ' ' + 'tam: ' + inttostr(length(trim(linhas[i]))));
+
+    if (linhas[i] = '') then break;
+    if (Colunas.Count = 1) then break;
 
     sgPrincipal.AddLinha;
     sgPrincipal.cells[0,i+1] := inttostr(i);
-    sgPrincipal.cells[2,i+1] := colunas.Strings[0];
-    sgPrincipal.cells[3,i+1] := colunas.Strings[1];
-    sgPrincipal.cells[4,i+1] := colunas.Strings[2];
+    sgPrincipal.cells[2,i+1] := trim(colunas.Strings[0]);
+    sgPrincipal.cells[3,i+1] := trim(colunas.Strings[1]);
+    sgPrincipal.cells[4,i+1] := formatfloat('0.00', colunas.Strings[2].ToDouble);
 
     FTotalImportado := FTotalImportado + strtofloat(colunas.Strings[2]);
   end;
@@ -545,14 +558,15 @@ begin
     colunas.Free;
     linhas.free;
   end;
-
   AtualizarValorLabel(lblTotalImportado,FTotalImportado);
   CalcularTotalSelecionado;
+  AtivarBotaoSalvar_Cadastro(FTotalImportado > 0);
 end;
 
 function TfrmPrincipal.ValidarArquivo():Boolean;
 begin
   result := (trim(FDiretorioArquivo) <> '');
+
   mSalvar.Enabled := result;
   mCadastro.Enabled:= not result;
 end;
@@ -584,6 +598,7 @@ begin
 end;
 
 end.
+
 
 
 

@@ -6,6 +6,8 @@ object frmRelatorio: TfrmRelatorio
   Caption = 'Relatório'
   ClientHeight = 538
   ClientWidth = 514
+  Constraints.MinHeight = 538
+  Constraints.MinWidth = 514
   OnCreate = FormCreate
   Position = poMainFormCenter
   LCLVersion = '2.0.2.0'
@@ -16,8 +18,6 @@ object frmRelatorio: TfrmRelatorio
     Width = 514
     Align = alClient
     Anchors = []
-    Constraints.MinHeight = 538
-    Constraints.MinWidth = 514
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -12

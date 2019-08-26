@@ -20,6 +20,7 @@ type
       function CorpoRelatorio(pColuna, pLinha: integer): string;
       procedure RetirarValorZerado;
       function RetornarCopiaGrid(): TStringGrid;
+      function RetornarDataEscrita(pData: string): string;
       function RetornarDescricao_Valor(pDescricao, pValor: string): string;
       function Rodape(pTotal: string): string;
     public
@@ -70,7 +71,7 @@ begin
 
   for c := 0 to pred(FStringGrid.ColCount) do
     for r := 0 to pred(FStringGrid.RowCount) do
-      FStringGridCopia.cells[c,r] := FStringGrid.cells[c,r];
+      FStringGridCopia.cells[c,r] := trim(FStringGrid.cells[c,r]);
 
   result := FStringGridCopia;
 end;
@@ -136,12 +137,35 @@ function TRelatorio.CorpoRelatorio(pColuna, pLinha: integer): string;
 var
   lData, lDescricao, lValor: string;
 begin
-  lData := FStringGridCopia.cells[2,pLinha]+ ' ';
+  lData := trim(FStringGridCopia.cells[2,pLinha]);
   lDescricao := FStringGridCopia.cells[3,pLinha];
   lValor := FStringGridCopia.cells[pColuna,pLinha];
-  result := lData + RetornarDescricao_Valor(lDescricao, lValor);
+  result := RetornarDataEscrita(lData) + RetornarDescricao_Valor(lDescricao, lValor);
 end;
 
+function TRelatorio.RetornarDataEscrita(pData: string):string;
+var
+  lTamanho: integer;
+begin
+  lTamanho := 0;
+  lTamanho := length(pData);
+
+  case lTamanho of
+  13: result := pData + '  ';
+  11: result := pData;
+  10: result := pData + stringOfChar(' ', 1);
+  9: result := pData + stringOfChar(' ', 2);
+  8: result := pData + stringOfChar(' ', 3);
+  7: result := pData + stringOfChar(' ', 4);
+  6: result := pData + stringOfChar(' ', 5);
+  5: result := pData + stringOfChar(' ', 6);
+  4: result := pData + stringOfChar(' ', 7);
+  3: result := pData + stringOfChar(' ', 8);
+  else
+    result := pData +' '+ inttostr(lTamanho);
+  end;
+
+end;
 
 function TRelatorio.RetornarDescricao_Valor(pDescricao, pValor: string):string;
 var
@@ -176,5 +200,6 @@ begin
 end;
 
 end.
+
 
 

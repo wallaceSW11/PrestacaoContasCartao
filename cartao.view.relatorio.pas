@@ -32,6 +32,7 @@ implementation
 procedure TfrmRelatorio.FormCreate(Sender: TObject);
 begin
   mmRelatorio.clear;
+  mmRelatorio.Font.Name := 'Courier New';
 end;
 
 end.
