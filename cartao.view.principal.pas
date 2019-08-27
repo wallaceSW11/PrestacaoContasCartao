@@ -1,21 +1,18 @@
 unit Cartao.View.Principal;
 
-{$mode objfpc}{$H+}
-
 interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Grids, StdCtrls, Menus,
   cartao.view.relatorio, cartao.view.cadastro, uGridHelper, IniFiles,
   LCLType, cartao.Helper.diretorios, cartao.model.ListaPessoa,
-  cartao.model.relatorio;
+  cartao.model.relatorio, Types;
 
 type
 
   { TfrmPrincipal }
 
   TfrmPrincipal = class(TForm)
-    Button1: TButton;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -26,7 +23,6 @@ type
     mCadastro: TMenuItem;
     MenuItem3: TMenuItem;
     mLimparTela: TMenuItem;
-    mSobre: TMenuItem;
     mRelatorio: TMenuItem;
     mSalvar: TMenuItem;
     mAbrir: TMenuItem;
@@ -39,7 +35,6 @@ type
     procedure btnCadastroClick(Sender: TObject);
     procedure btnImportarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mAbrirClick(Sender: TObject);
@@ -49,6 +44,9 @@ type
     procedure mImportarTXTClick(Sender: TObject);
     procedure mSalvarClick(Sender: TObject);
     procedure sgPrincipalClick(Sender: TObject);
+    procedure sgPrincipalDrawCell(Sender: TObject; aCol, aRow: Integer;
+      aRect: TRect; aState: TGridDrawState);
+    procedure sgPrincipalKeyPress(Sender: TObject; var Key: char);
     procedure sgPrincipalKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure SelecionarValor(Sender: TObject);
@@ -58,6 +56,7 @@ type
     FTotalImportado: double;
     FTotalSelecionado: double;
     FDiretorioArquivo: string;
+    FCampoSelecionado: string;
     procedure AlterarCorLabel(pValor: double);
     procedure AtivarBotaoSalvar_Cadastro(pAtivar:boolean = True);
     procedure AtualizarValorLabel(pLabel: TLabel; pValor: double);
@@ -188,8 +187,60 @@ end;
 procedure TfrmPrincipal.sgPrincipalClick(Sender: TObject);
 begin
   SomarValoresLinha();
+  FCampoSelecionado := sgPrincipal.cells[sgPrincipal.Col,sgPrincipal.Row];
+//  showmessage('Col: ' + inttostr(sgPrincipal.Col) + ' linha: ' + inttostr(sgPrincipal.Row));
 end;
 
+procedure TfrmPrincipal.sgPrincipalDrawCell(Sender: TObject; aCol,
+  aRow: Integer; aRect: TRect; aState: TGridDrawState);
+var
+  LarguraTexto, AlturaTexto, X, Y: integer;
+  Texto: string;
+begin
+  Texto := sgPrincipal.Cells[ACol, ARow];
+  LarguraTexto := sgPrincipal.Canvas.TextWidth(Texto);
+  AlturaTexto := sgPrincipal.Canvas.TextHeight(Texto);
+
+  sgPrincipal.canvas.brush.color := clblack;
+
+  if ((ARow =0) and (ACol = 2)) then
+    X := aRect.Left + (aRect.Right - aRect.Left) div 2 - LarguraTexto div 2
+  else
+    if (ACol <>3) then
+      X := aRect.Right - LarguraTexto - 4
+   else
+   X := aRect.Left + 2;
+
+
+  Y := aRect.Top + (aRect.Bottom - aRect.Top) div 2 - AlturaTexto div 2;
+  sgPrincipal.Canvas.TextRect(aRect, X, Y, Texto);
+end;
+
+procedure TfrmPrincipal.sgPrincipalKeyPress(Sender: TObject; var Key: char);
+var
+  lCampo: string;
+begin
+  //lCampo := sgPrincipal.cells[sgPrincipal.Col,sgPrincipal.Row];
+  //showmessage('campo: ' + FCampoSelecionado);
+    //if (CharInSet(Key,['.',','])) then
+    //begin
+    //  if (FCampoSelecionado = '') then
+    //    begin
+    //      FCampoSelecionado := '0';
+    //      //pCampo.selstart := Length( pCampo.Text );
+    //    end;
+    //
+    //  if pos(',', FCampoSelecionado)>0 then
+    //    Key := #0
+    //  else
+    //    Key := #44;
+    //end
+    //else
+  if not (CharInSet(Key, ['0'..'9',',',#8,#7,#13])) then
+    begin
+      Key := #0;
+    end;
+end;
 
 
 procedure TfrmPrincipal.sgPrincipalKeyUp(Sender: TObject; var Key: Word;
@@ -389,17 +440,6 @@ begin
   SalvarDadosGrid;
 end;
 
-procedure TfrmPrincipal.Button1Click(Sender: TObject);
-var
-  lCel: tdatetime;
-  ldata: string;
-begin
-  //lcel := strtodate(sgprincipal.cells[2,1]);
-  //lData := formatdatetime('dd/MM/yyyy', lcel);
-  showmessage('Dado: ' + sgprincipal.cells[2,1] + ' ' + inttostr(length(sgprincipal.cells[2,1])));
-  showmessage('Dado: ' + sgprincipal.cells[2,2] + ' ' + inttostr(length(sgprincipal.cells[2,2])));
- // showmessage('Dado2: ' + lcel + ' ' + inttostr(length(lcel)));
-end;
 
 procedure TfrmPrincipal.SalvarDadosGrid;
 var
@@ -453,24 +493,6 @@ begin
     lTela.free;
   end;
 end;
-
-//function TfrmPrincipal.RetornarCopiaGrid():TStringGrid;
-//var
-//  c, r: integer;
-//  lGrid: TStringGrid;
-//begin
-//  lGrid := TStringGrid.create(nil);
-//
-//  lgrid.ColCount := sgprincipal.ColCount;
-//  lgrid.rowcount := sgprincipal.RowCount;
-//
-//  for c := 0 to pred(sgprincipal.ColCount) do
-//    for r := 0 to pred(sgprincipal.RowCount) do
-//      lgrid.cells[c,r] := sgprincipal.cells[c,r];
-//
-//
-//  result := lGrid;
-//end;
 
 procedure TfrmPrincipal.CriarColunasGrid;
 begin
@@ -540,8 +562,6 @@ begin
     colunas.StrictDelimiter:= true;
     colunas.Delimiter := ';';
     colunas.DelimitedText := linhas[i];
-
-    //showmessage('linha: ' + trim(linhas[i]) + ' ' + 'tam: ' + inttostr(length(trim(linhas[i]))));
 
     if (linhas[i] = '') then break;
     if (Colunas.Count = 1) then break;
