@@ -8,9 +8,9 @@
       <Unit0>
         <Filename Value="Cartao.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <CursorPos X="41" Y="15"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -20,10 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Cartao.View.Principal"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="194"/>
-        <CursorPos X="45" Y="204"/>
-        <UsageCount Value="152"/>
+        <CursorPos X="26" Y="213"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -34,7 +33,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="31" Y="24"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="154"/>
       </Unit2>
       <Unit3>
         <Filename Value="cartao.controller.cartao.pas"/>
@@ -42,7 +41,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="28" Y="30"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="154"/>
       </Unit3>
       <Unit4>
         <Filename Value="cartao.model.entidades.lancamento.pas"/>
@@ -51,7 +50,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="20" Y="27"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="154"/>
       </Unit4>
       <Unit5>
         <Filename Value="cartao.view.relatorio.pas"/>
@@ -62,7 +61,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
         <CursorPos X="29" Y="29"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="154"/>
       </Unit5>
       <Unit6>
         <Filename Value="cartao.view.cadastro.pas"/>
@@ -73,7 +72,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="108"/>
         <CursorPos X="60" Y="126"/>
-        <UsageCount Value="128"/>
+        <UsageCount Value="130"/>
       </Unit6>
       <Unit7>
         <Filename Value="ugridhelper.pas"/>
@@ -81,7 +80,7 @@
         <UnitName Value="uGridHelper"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="22" Y="12"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="129"/>
       </Unit7>
       <Unit8>
         <Filename Value="Helper\cartao.helper.diretorios.pas"/>
@@ -89,7 +88,7 @@
         <UnitName Value="Cartao.Helper.Diretorios"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="41" Y="8"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="107"/>
       </Unit8>
       <Unit9>
         <Filename Value="Helper\cartao.model.listapessoa.pas"/>
@@ -97,16 +96,18 @@
         <UnitName Value="cartao.model.ListaPessoa"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="10"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="79"/>
       </Unit9>
       <Unit10>
         <Filename Value="cartao.model.relatorio.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="cartao.model.Relatorio"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="140"/>
-        <CursorPos X="49" Y="160"/>
-        <UsageCount Value="62"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="144"/>
+        <CursorPos X="6" Y="168"/>
+        <UsageCount Value="64"/>
+        <Loaded Value="True"/>
       </Unit10>
       <Unit11>
         <Filename Value="C:\lazarus\lcl\grids.pas"/>

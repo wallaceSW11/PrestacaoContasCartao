@@ -167,6 +167,31 @@ begin
 
 end;
 
+
+//function TRelatorio.RetornarDataEscrita(pData: string):string;
+//var
+//  lTamanho: integer;
+//begin
+//  lTamanho := 0;
+//  lTamanho := length(pData);
+//
+//  case lTamanho of
+//  13: result := pData + '  ';
+//  11: result := pData;
+//  10: result := pData + stringOfChar(' ', 1);
+//  9: result := pData + stringOfChar(' ', 2);
+//  8: result := pData + stringOfChar(' ', 3);
+//  7: result := pData + stringOfChar(' ', 4);
+//  6: result := pData + stringOfChar(' ', 5);
+//  5: result := pData + stringOfChar(' ', 6);
+//  4: result := pData + stringOfChar(' ', 7);
+//  3: result := pData + stringOfChar(' ', 8);
+//  else
+//    result := pData +' '+ inttostr(lTamanho);
+//  end;
+//
+//end;
+
 function TRelatorio.RetornarDescricao_Valor(pDescricao, pValor: string):string;
 var
   lTamanhoValor, lTamanhoDescricao: integer;

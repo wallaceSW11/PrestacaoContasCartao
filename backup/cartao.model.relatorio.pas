@@ -158,6 +158,9 @@ begin
   8: result := pData + stringOfChar(' ', 3);
   7: result := pData + stringOfChar(' ', 4);
   6: result := pData + stringOfChar(' ', 5);
+  5: result := pData + stringOfChar(' ', 6);
+  4: result := pData + stringOfChar(' ', 7);
+  3: result := pData + stringOfChar(' ', 8);
   else
     result := pData +' '+ inttostr(lTamanho);
   end;
