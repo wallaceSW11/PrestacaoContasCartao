@@ -17,6 +17,7 @@ object frmPrincipal: TfrmPrincipal
     Top = 8
     Width = 1096
     Anchors = [akTop, akLeft, akRight, akBottom]
+    Color = clWhite
     ColCount = 0
     DefaultDrawing = False
     FixedCols = 0

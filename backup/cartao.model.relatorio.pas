@@ -50,13 +50,13 @@ begin
     FListaRelatorio.add(Cabecalho);
 
     for j := 1 to pred(FStringGridCopia.RowCount) do
-    begin
+   // begin
       if (FStringGridCopia.cells[i,j] <> '') then
       begin
         FListaRelatorio.add(CorpoRelatorio(i,j));
         lTotal := lTotal + strtofloat(FStringGridCopia.cells[i,j]);
       end;
-    end;
+   // end;
     FListaRelatorio.add(rodape(formatfloat('0.00', lTotal)));
   end;
   result := FListaRelatorio;
@@ -124,81 +124,34 @@ begin
 end;
 
 function TRelatorio.Cabecalho(): String;
-var
-  lEspaco1, lEspaco2, lSeparador: string;
 begin
-  lEspaco1 := stringOfChar(' ', 7);
-  lEspaco2 := stringOfChar(' ', 35);
-  lSeparador := stringofchar('-',62);
-  result := 'Data' + lEspaco1 + 'Descrição'+ lEspaco2 + 'Valor' +#13+lSeparador;
+  result := 'Data' + stringOfChar(' ', 7) +
+            'Descrição'+ stringOfChar(' ', 35) +
+            'Valor' + #13 + stringofchar('-',62);
 end;
 
 function TRelatorio.CorpoRelatorio(pColuna, pLinha: integer): string;
-var
-  lData, lDescricao, lValor: string;
 begin
-  lData := trim(FStringGridCopia.cells[2,pLinha]);
-  lDescricao := FStringGridCopia.cells[3,pLinha];
-  lValor := FStringGridCopia.cells[pColuna,pLinha];
-  result := RetornarDataEscrita(lData) + RetornarDescricao_Valor(lDescricao, lValor);
+  result := RetornarDataEscrita(FStringGridCopia.cells[2,pLinha]) +
+            RetornarDescricao_Valor(FStringGridCopia.cells[3,pLinha], FStringGridCopia.cells[pColuna,pLinha]);
 end;
 
 function TRelatorio.RetornarDataEscrita(pData: string):string;
-var
-  lTamanho: integer;
 begin
-  lTamanho := 0;
-  lTamanho := length(pData);
-
-  case lTamanho of
-  13: result := pData + '  ';
-  11: result := pData;
-  10: result := pData + stringOfChar(' ', 1);
-  9: result := pData + stringOfChar(' ', 2);
-  8: result := pData + stringOfChar(' ', 3);
-  7: result := pData + stringOfChar(' ', 4);
-  6: result := pData + stringOfChar(' ', 5);
-  5: result := pData + stringOfChar(' ', 6);
-  4: result := pData + stringOfChar(' ', 7);
-  3: result := pData + stringOfChar(' ', 8);
-  else
-    result := pData +' '+ inttostr(lTamanho);
-  end;
-
+  result := pData + stringOfChar(' ', 11 - length(pData));
 end;
 
 function TRelatorio.RetornarDescricao_Valor(pDescricao, pValor: string):string;
-var
-  lTamanhoValor, lTamanhoDescricao: integer;
 begin
-  lTamanhoDescricao := length(pDescricao);
-  lTamanhoValor := length(pValor);
-
-  case lTamanhoValor of
-  7: result := pDescricao + stringOfChar(' ', 44 - lTamanhoDescricao) + pValor;
-  6: result := pDescricao + stringOfChar(' ', 45 - lTamanhoDescricao) + pValor;
-  5: result := pDescricao + stringOfChar(' ', 46 - lTamanhoDescricao) + pValor;
-  4: result := pDescricao + stringOfChar(' ', 47 - lTamanhoDescricao) + pValor;
-  end;
+  result := pDescricao + stringOfChar(' ', 51 - (length(pValor) + length(pDescricao))) + pValor;
 end;
 
 function TRelatorio.Rodape(pTotal: string): string;
-var
-  lLinha: string;
-  lTamanhoValor: integer;
 begin
-  lTamanhoValor := length(pTotal);
-  lLinha := stringofchar('-', 62);
-
-  case lTamanhoValor of
-  8: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 54 - 6) + pTotal + #13 + lLinha + #13;
-  7: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 55 - 6) + pTotal + #13 + lLinha + #13;
-  6: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 56 - 6) + pTotal + #13 + lLinha + #13;
-  5: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 57 - 6) + pTotal + #13 + lLinha + #13;
-  4: result := lLinha + #13 + 'Total:' + stringOfChar(' ', 58 - 6) + pTotal + #13 + lLinha + #13;
-  end;
+  result := stringofchar('-', 62) + #13 +
+            'Total:' + stringOfChar(' ', 56 - length(pTotal)) + pTotal + #13 +
+            stringofchar('-', 62) + #13;
 end;
-
 end.
 
 

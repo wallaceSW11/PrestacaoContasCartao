@@ -187,8 +187,6 @@ end;
 procedure TfrmPrincipal.sgPrincipalClick(Sender: TObject);
 begin
   SomarValoresLinha();
-  FCampoSelecionado := sgPrincipal.cells[sgPrincipal.Col,sgPrincipal.Row];
-//  showmessage('Col: ' + inttostr(sgPrincipal.Col) + ' linha: ' + inttostr(sgPrincipal.Row));
 end;
 
 procedure TfrmPrincipal.sgPrincipalDrawCell(Sender: TObject; aCol,
@@ -203,43 +201,48 @@ begin
 
   sgPrincipal.canvas.brush.color := clblack;
 
-  if ((ARow =0) and (ACol = 2)) then
-    X := aRect.Left + (aRect.Right - aRect.Left) div 2 - LarguraTexto div 2
+  if ((ARow > 0) and (ACol = 2)) then
+    X := aRect.Left + (aRect.Right - aRect.Left) div 2 - LarguraTexto div 2 // centro
   else
-    if (ACol <>3) then
-      X := aRect.Right - LarguraTexto - 4
-   else
-   X := aRect.Left + 2;
+    if ((ACol <> 3) and (ARow > 0)) then
+      X := aRect.Right - LarguraTexto - 4 // direita
+    else
+      X := aRect.Left + 2; // esquerda
 
 
   Y := aRect.Top + (aRect.Bottom - aRect.Top) div 2 - AlturaTexto div 2;
   sgPrincipal.Canvas.TextRect(aRect, X, Y, Texto);
 end;
 
+//procedure TfrmPrincipal.sgPrincipalDrawCell(Sender: TObject; aCol,
+//  aRow: Integer; aRect: TRect; aState: TGridDrawState);
+//var
+//  LarguraTexto, AlturaTexto, X, Y: integer;
+//  Texto: string;
+//begin
+//  Texto := sgPrincipal.Cells[ACol, ARow];
+//  LarguraTexto := sgPrincipal.Canvas.TextWidth(Texto);
+//  AlturaTexto := sgPrincipal.Canvas.TextHeight(Texto);
+//
+//  sgPrincipal.canvas.brush.color := clblack;
+//
+//  if ((ARow >0) and (ACol = 2)) then
+//    X := aRect.Left + (aRect.Right - aRect.Left) div 2 - LarguraTexto div 2
+//  else
+//    if (ACol <> 3) then
+//      X := aRect.Right - LarguraTexto - 4
+//    else
+//      X := aRect.Left + 2;
+//
+//
+//  Y := aRect.Top + (aRect.Bottom - aRect.Top) div 2 - AlturaTexto div 2;
+//  sgPrincipal.Canvas.TextRect(aRect, X, Y, Texto);
+//end;
+
 procedure TfrmPrincipal.sgPrincipalKeyPress(Sender: TObject; var Key: char);
-var
-  lCampo: string;
 begin
-  //lCampo := sgPrincipal.cells[sgPrincipal.Col,sgPrincipal.Row];
-  //showmessage('campo: ' + FCampoSelecionado);
-    //if (CharInSet(Key,['.',','])) then
-    //begin
-    //  if (FCampoSelecionado = '') then
-    //    begin
-    //      FCampoSelecionado := '0';
-    //      //pCampo.selstart := Length( pCampo.Text );
-    //    end;
-    //
-    //  if pos(',', FCampoSelecionado)>0 then
-    //    Key := #0
-    //  else
-    //    Key := #44;
-    //end
-    //else
   if not (CharInSet(Key, ['0'..'9',',',#8,#7,#13])) then
-    begin
-      Key := #0;
-    end;
+    Key := #0;
 end;
 
 
