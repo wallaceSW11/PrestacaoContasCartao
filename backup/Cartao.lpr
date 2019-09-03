@@ -10,7 +10,7 @@ uses
   Forms, Cartao.View.Principal, cartao.controller.cartao,
   cartao.model.entidades.Lancamento, cartao.view.relatorio,
   cartao.view.cadastro, uGridHelper, cartao.helper.diretorios,
-  cartao.model.ListaPessoa, cartao.model.relatorio, unit1;
+  cartao.model.ListaPessoa, cartao.model.relatorio, cartao.view.cadastro.Lancamentopas;
 
 {$R *.res}
 
@@ -19,6 +19,7 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmCadastroLancamento, frmCadastroLancamento);
   Application.Run;
 end.
 

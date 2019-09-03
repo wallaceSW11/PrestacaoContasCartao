@@ -1,0 +1,95 @@
+object frmCadastroLancamento: TfrmCadastroLancamento
+  Left = 365
+  Height = 102
+  Top = 322
+  Width = 698
+  BorderIcons = [biMinimize, biMaximize]
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de lançamento'
+  ClientHeight = 102
+  ClientWidth = 698
+  KeyPreview = True
+  OnCreate = FormCreate
+  Position = poWorkAreaCenter
+  LCLVersion = '2.0.4.0'
+  object dtData: TDateTimePicker
+    Left = 8
+    Height = 23
+    Top = 24
+    Width = 83
+    CenturyFrom = 1941
+    MaxDate = 2958465
+    MinDate = -53780
+    TabOrder = 0
+    TrailingSeparator = False
+    TextForNullDate = 'NULL'
+    LeadingZeros = True
+    Kind = dtkDate
+    TimeFormat = tf24
+    TimeDisplay = tdHMS
+    DateMode = dmComboBox
+    Date = 43711
+    Time = 0.364124293984787
+    UseDefaultSeparators = True
+    HideDateTimeParts = []
+    MonthNames = 'Long'
+  end
+  object edtDescricao: TEdit
+    Left = 96
+    Height = 23
+    Top = 24
+    Width = 420
+    TabOrder = 1
+  end
+  object edtValor: TEdit
+    Left = 520
+    Height = 23
+    Top = 24
+    Width = 168
+    BidiMode = bdRightToLeft
+    ParentBidiMode = False
+    TabOrder = 2
+  end
+  object btnAdicionar: TButton
+    Left = 520
+    Height = 25
+    Top = 64
+    Width = 75
+    Caption = 'Adicionar'
+    OnClick = btnAdicionarClick
+    TabOrder = 3
+  end
+  object btnCancelar: TButton
+    Left = 613
+    Height = 25
+    Top = 64
+    Width = 75
+    Caption = 'Cancelar'
+    OnClick = btnCancelarClick
+    TabOrder = 4
+  end
+  object lblData: TLabel
+    Left = 8
+    Height = 15
+    Top = 8
+    Width = 27
+    Caption = 'Data:'
+    ParentColor = False
+  end
+  object lblDescricao: TLabel
+    Left = 96
+    Height = 15
+    Top = 8
+    Width = 54
+    Caption = 'Descrição:'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 520
+    Height = 15
+    Top = 8
+    Width = 30
+    Caption = 'Valor:'
+    ParentColor = False
+  end
+end

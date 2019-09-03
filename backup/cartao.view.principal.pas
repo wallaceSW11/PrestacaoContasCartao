@@ -6,7 +6,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Grids, StdCtrls, Menus,
   cartao.view.relatorio, cartao.view.cadastro, uGridHelper, IniFiles,
   LCLType, cartao.Helper.diretorios, cartao.model.ListaPessoa,
-  cartao.model.relatorio, Types;
+  cartao.model.relatorio, Types, cartao.view.cadastro.lancamento;
 
 type
 
@@ -21,12 +21,12 @@ type
     lblTotalSelecionado: TLabel;
     MenuItem1: TMenuItem;
     mCadastro: TMenuItem;
-    MenuItem3: TMenuItem;
+    MenuItem2: TMenuItem;
+    mImportar: TMenuItem;
     mLimparTela: TMenuItem;
     mRelatorio: TMenuItem;
     mSalvar: TMenuItem;
     mAbrir: TMenuItem;
-    mImportarTXT: TMenuItem;
     mCadastroPessoa: TMenuItem;
     mMenu: TMainMenu;
     odDiretorio: TOpenDialog;
@@ -39,6 +39,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure mAbrirClick(Sender: TObject);
     procedure mCadastroPessoaClick(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
+    procedure mImportarClick(Sender: TObject);
     procedure mLimparTelaClick(Sender: TObject);
     procedure mRelatorioClick(Sender: TObject);
     procedure mImportarTXTClick(Sender: TObject);
@@ -57,6 +59,7 @@ type
     FTotalSelecionado: double;
     FDiretorioArquivo: string;
     FCampoSelecionado: string;
+    procedure AdicionarNovoLancamento();
     procedure AlterarCorLabel(pValor: double);
     procedure AtivarBotaoSalvar_Cadastro(pAtivar:boolean = True);
     procedure AtualizarValorLabel(pLabel: TLabel; pValor: double);
@@ -141,6 +144,45 @@ end;
 procedure TfrmPrincipal.mCadastroPessoaClick(Sender: TObject);
 begin
   CadastroPessoa;
+end;
+
+procedure TfrmPrincipal.MenuItem2Click(Sender: TObject);
+begin
+  AdicionarNovoLancamento();
+end;
+
+procedure TfrmPrincipal.AdicionarNovoLancamento();
+var
+  lTela: TfrmCadastroLancamento;
+  lDados: TStringList;
+  i: integer;
+begin
+  lTela := TfrmCadastroLancamento.Create(nil);
+  lDados := TStringList.Create;
+
+  try
+    lDados := lTela.DadosLancamento;
+
+    //showmessage('Total: '+ inttostr(lDados.count));
+
+    if lDados = nil then
+   			exit;
+
+    sgPrincipal.rowcount := sgPrincipal.rowcount + 1;
+    sgPrincipal.cells[2,sgPrincipal.rowcount-1] := lDados.strings[0];
+    sgPrincipal.cells[3,sgPrincipal.rowcount-1] := lDados.strings[1];
+    sgPrincipal.cells[4,sgPrincipal.rowcount-1] := lDados.strings[2];
+
+  finally
+    lTela.free;
+    lDados.free;
+  end;
+
+end;
+
+procedure TfrmPrincipal.mImportarClick(Sender: TObject);
+begin
+  ImportarCartao();
 end;
 
 procedure TfrmPrincipal.mLimparTelaClick(Sender: TObject);
@@ -245,15 +287,12 @@ begin
     Key := #0;
 end;
 
-
 procedure TfrmPrincipal.sgPrincipalKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if Key = 13 then
     SomarValoresLinha;
 end;
-
-
 
 procedure TfrmPrincipal.SomarValoresLinha();
 var
@@ -369,7 +408,6 @@ procedure TfrmPrincipal.btnCadastroClick(Sender: TObject);
 begin
   CadastroPessoa;
 end;
-
 
 procedure TfrmPrincipal.CadastroPessoa;
 var
@@ -501,6 +539,7 @@ procedure TfrmPrincipal.CriarColunasGrid;
 begin
   sgPrincipal.ColCount := 1;
   sgPrincipal.RowCount := 1;
+  sgPrincipal.FixedRows := 1;
   sgPrincipal.Options := [goFixedHorzLine, goFixedVertLine, goHorzLine, goVertLine];
 
   sgPrincipal.AddColuna('ID',0);
@@ -533,7 +572,7 @@ begin
 
   if not FileExists(THelper.RetornarDiretorioArquivoPessoas) then
   begin
-    showmessage('Por favor, cadastre as pessoas na tela a seguir e clique em Salvar');
+    showmessage('Por favor, cadastre as pessoas na tela a seguir e clique em OK');
     lTela := TfrmCadastro.create(nil);
     try
       lTela.showmodal;
@@ -589,12 +628,9 @@ end;
 function TfrmPrincipal.ValidarArquivo():Boolean;
 begin
   result := (trim(FDiretorioArquivo) <> '');
-
   mSalvar.Enabled := result;
   mCadastro.Enabled:= not result;
 end;
-
-
 
 procedure TfrmPrincipal.PreencherGrid(pArquivo: TIniFile; pLista: TStringList);
 var

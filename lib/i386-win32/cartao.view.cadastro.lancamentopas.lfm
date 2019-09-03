@@ -1,0 +1,12 @@
+object frmCadastroLancamento: TfrmCadastroLancamento
+  Left = 356
+  Height = 123
+  Top = 218
+  Width = 698
+  BorderIcons = [biMinimize, biMaximize]
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de lançamento'
+  KeyPreview = True
+  Position = poWorkAreaCenter
+  LCLVersion = '2.0.4.0'
+end

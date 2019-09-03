@@ -26,12 +26,15 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="2">
       <Item1>
-        <PackageName Value="LCL"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
     </RequiredPackages>
-    <Units Count="11">
+    <Units Count="12">
       <Unit0>
         <Filename Value="Cartao.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -92,6 +95,12 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="cartao.model.Relatorio"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="cartao.view.cadastro.lancamento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCadastroLancamento"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit11>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

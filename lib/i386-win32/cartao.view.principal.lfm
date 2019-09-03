@@ -15,7 +15,7 @@ object frmPrincipal: TfrmPrincipal
     Left = 8
     Height = 433
     Top = 8
-    Width = 1096
+    Width = 1100
     Anchors = [akTop, akLeft, akRight, akBottom]
     Color = clWhite
     ColCount = 0
@@ -147,13 +147,15 @@ object frmPrincipal: TfrmPrincipal
         ShortCut = 24641
         OnClick = mAbrirClick
       end
-      object MenuItem3: TMenuItem
+      object MenuItem2: TMenuItem
+        Caption = 'Novo lançamento'
+        ShortCut = 16462
+        OnClick = MenuItem2Click
+      end
+      object mImportar: TMenuItem
         Caption = 'Importar'
-        object mImportarTXT: TMenuItem
-          Caption = 'Importar TXT'
-          ShortCut = 16462
-          OnClick = mImportarTXTClick
-        end
+        ShortCut = 16457
+        OnClick = mImportarClick
       end
       object mCadastro: TMenuItem
         Caption = 'Cadastro'
